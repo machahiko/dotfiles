@@ -1,14 +1,8 @@
-"https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sampleを
-"微妙にカスタマイズしてある
-
 set nocompatible
 scriptencoding cp932
-"scriptencodingと、このファイルのエンコーディングが一致するよう注意！
-"scriptencodingは、vimの内部エンコーディングと同じものを推奨します。
-"改行コードは set fileformat=unix に設定するとunixでも使えます。
 
 "----------------------------------------
-" ユーザーランタイムパス設定
+" User Runtime Path Settings
 "----------------------------------------
 "Windows, unixでのruntimepathの違いを吸収するためのもの。 
 "$MY_VIMRUNTIMEはユーザーランタイムディレクトリを示す。 
@@ -25,33 +19,40 @@ endif
 "例) vimfiles/qfixapp (Linuxでは~/.vim/qfixapp)にランタイムパスを通す場合 
 "set runtimepath+=$MY_VIMRUNTIME/qfixapp
 
-"----------------------------------------
-" 内部エンコーディング指定
-"----------------------------------------
-"内部エンコーディングのUTF-8化と文字コードの自動認識設定をencode.vimで行う。
-"オールインワンパッケージの場合 vimrcで設定されているので何もしない。
-"エンコーディング指定や文字コードの自動認識設定が適切に設定されている場合、
-"次行の encode.vim読込部分はコメントアウトして下さい。「encode.vimについて」
-"silent! source $MY_VIMRUNTIME/pluginjp/encode.vim
-
-"scriptencodingと異なる内部エンコーディングに変更する場合、
-"変更後にもscriptencodingを指定しておくと問題が起きにくくなります。
-"scriptencoding cp932
 
 "----------------------------------------
-" システム設定
+" General
 "----------------------------------------
-"mswin.vimを読み込む
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
-
-"ファイルの上書きの前にバックアップを作る/作らない
-"set writebackupを指定してもオプション 'backup' がオンでない限り、
-"バックアップは上書きに成功した後に削除される。
-set nowritebackup
-"バックアップ/スワップファイルを作成する/しない
-set nobackup
+set nowritebackup "ファイルの上書きの前にバックアップを作らない
+set nobackup "バックアップ/スワップファイルを作成する/しない
 "set noswapfile
+"set viminfo= "viminfoを作成しない
+set clipboard+=unnamed "クリップボードを共有
+set nrformats-=octal "8進数を無効にする。<C-a>,<C-x>に影響する
+set timeoutlen=3500 "キーコードやマッピングされたキー列が完了するのを待つ時間(ミリ秒)
+set hidden "編集結果非保存のバッファから、新しいバッファを開くときに警告を出さない
+set history=50 "ヒストリの保存数
+set formatoptions+=mM "日本語の行の連結時には空白を入力しない
+set virtualedit=block "Visual blockモードでフリーカーソルを有効にする
+set whichwrap=b,s,[,],<,> "カーソルキーで行末／行頭の移動可能に設定
+set backspace=indent,eol,start "バックスペースでインデントや改行を削除できるようにする
+set ambiwidth=double "□や○の文字があってもカーソル位置がずれないようにする
+set wildmenu "コマンドライン補完するときに強化されたものを使う
+
+set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
+set pastetoggle=<F2> "F2でpasteモードに。pasteするときにインデントを無効化。
+
+" エンコーディング
+set encoding=utf-8
+set fileencodings=euc-jp
+
+"インデント関連
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=4
+set tabstop=4
+
 "再読込、vim終了後も継続するアンドゥ(7.3)
 if version >= 703
   "Persistent undoを有効化(7.3)
@@ -59,89 +60,49 @@ if version >= 703
   "アンドゥの保存場所(7.3)
   "set undodir=.
 endif
-"viminfoを作成しない
-"set viminfo=
-"クリップボードを共有
-set clipboard+=unnamed
-"8進数を無効にする。<C-a>,<C-x>に影響する
-set nrformats-=octal
-"キーコードやマッピングされたキー列が完了するのを待つ時間(ミリ秒)
-set timeoutlen=3500
-"編集結果非保存のバッファから、新しいバッファを開くときに警告を出さない
-set hidden
-"ヒストリの保存数
-set history=50
-"日本語の行の連結時には空白を入力しない
-set formatoptions+=mM
-"Visual blockモードでフリーカーソルを有効にする
-set virtualedit=block
-"カーソルキーで行末／行頭の移動可能に設定
-set whichwrap=b,s,[,],<,>
-"バックスペースでインデントや改行を削除できるようにする
-set backspace=indent,eol,start
-"□や○の文字があってもカーソル位置がずれないようにする
-set ambiwidth=double
-"コマンドライン補完するときに強化されたものを使う
-set wildmenu
+
 "マウスを有効にする
 if has('mouse')
   set mouse=a
 endif
-"pluginを使用可能にする
-filetype plugin indent on
+filetype plugin indent on "pluginを使用可能にする
 
 "----------------------------------------
-" 検索
+" Search
 "----------------------------------------
 "検索の時に大文字小文字を区別しない
 "ただし大文字小文字の両方が含まれている場合は大文字小文字を区別する
 set ignorecase
 set smartcase
-"検索時にファイルの最後まで行ったら最初に戻る
-set wrapscan
-"インクリメンタルサーチ
-set incsearch
-"検索文字の強調表示
-set hlsearch
+set wrapscan "検索時にファイルの最後まで行ったら最初に戻る
+set incsearch "インクリメンタルサーチ
+set hlsearch "検索文字の強調表示
 "w,bの移動で認識する文字
 "set iskeyword=a-z,A-Z,48-57,_,.,-,>
 "vimgrep をデフォルトのgrepとする場合internal
 "set grepprg=internal
 
 "----------------------------------------
-" 表示設定
+" View 
 "----------------------------------------
-"スプラッシュ(起動時のメッセージ)を表示しない
-"set shortmess+=I
-"エラー時の音とビジュアルベルの抑制(gvimは.gvimrcで設定)
-set noerrorbells
+"set shortmess+=I "スプラッシュ(起動時のメッセージ)を表示しない
+set noerrorbells "エラー時の音とビジュアルベルの抑制(gvimは.gvimrcで設定)
 set novisualbell
 set visualbell t_vb=
-"マクロ実行中などの画面再描画を行わない
-"set lazyredraw
-"Windowsでディレクトリパスの区切り文字表示に / を使えるようにする
-set shellslash
-"行番号表示
-set number
-"括弧の対応表示時間
-set showmatch matchtime=1
-"タブを設定
-set ts=2 sw=2 sts=2
-"自動的にインデントする
-set autoindent
-"Cインデントの設定
-set cinoptions+=:0
-"タイトルを表示
-set title
-"コマンドラインの高さ (gvimはgvimrcで指定)
-set cmdheight=2
+"set lazyredraw "マクロ実行中などの画面再描画を行わない
+set shellslash "Windowsでディレクトリパスの区切り文字表示に / を使えるようにする
+set number "行番号表示
+set ruler
+set showmatch matchtime=1 "括弧の対応表示時間
+set ts=2 sw=2 sts=2 "タブを設定
+set autoindent "自動的にインデントする
+set cinoptions+=:0 "Cインデントの設定
+set title "タイトルを表示
+set cmdheight=2 "コマンドラインの高さ (gvimはgvimrcで指定)
 set laststatus=2
-"コマンドをステータス行に表示
-set showcmd
-"画面最後の行をできる限り表示する
-set display=lastline
-"Tab、行末の半角スペースを明示的に表示する
-set list
+set showcmd "コマンドをステータス行に表示
+set display=lastline "画面最後の行をできる限り表示する
+set list "Tab、行末の半角スペースを明示的に表示する
 set listchars=tab:^\ ,trail:~
 
 " ハイライトを有効にする
@@ -157,6 +118,17 @@ autocmd WinLeave * setlocal nocursorline
 "色テーマ設定
 "gvimの色テーマは.gvimrcで指定する
 colorscheme desert
+"コメントの色をグレーに
+hi Comment ctermfg=gray
+
+"タブ、全角スペースを表示
+"set list
+"set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+"hi SpecialKey ctermfg=Blue guifg=Blue
+"hi NonText ctermfg=Blue guifg=Blue
+"hi JpSpace cterm=underline ctermfg=Blue guifg=Blue
+"au BufRead,BufNew * match JpSpace /　/
+
 
 """"""""""""""""""""""""""""""
 "ステータスラインに文字コードやBOM、16進表示等表示
@@ -213,7 +185,7 @@ function! MyPatch()
 endfunction
 
 "----------------------------------------
-" ノーマルモード
+" NORMAL MODE
 "----------------------------------------
 "ヘルプ検索
 nnoremap <F1> K
@@ -243,18 +215,18 @@ nnoremap <C-l> <C-w>l
 set pastetoggle=<F2>
 
 "----------------------------------------
-" 挿入モード
+" INSERT MODE
 "----------------------------------------
 "insertモードでjj押せばノーマルモードに。
 " in insert mode, jj means <ESC>.
 inoremap jj <ESC>
 
 "----------------------------------------
-" ビジュアルモード
+" VISUAL MODE
 "----------------------------------------
 
 "----------------------------------------
-" コマンドモード
+" COMMAND MODE
 "----------------------------------------
 
 "----------------------------------------
@@ -310,30 +282,6 @@ function! s:GetHighlight(hi)
 endfunction
 
 """"""""""""""""""""""""""""""
-"全角スペースを表示
-""""""""""""""""""""""""""""""
-"コメント以外で全角スペースを指定しているので、scriptencodingと、
-"このファイルのエンコードが一致するよう注意！
-"強調表示されない場合、ここでscriptencodingを指定するとうまくいく事があります。
-"scriptencoding cp932
-
-"デフォルトのZenkakuSpaceを定義
-function! ZenkakuSpace()
-  highlight ZenkakuSpace cterm=underline ctermfg=darkgrey gui=underline guifg=darkgrey
-endfunction
-
-if has('syntax')
-  augroup ZenkakuSpace
-    autocmd!
-    " ZenkakuSpaceをカラーファイルで設定するなら次の行は削除
-    autocmd ColorScheme       * call ZenkakuSpace()
-    " 全角スペースのハイライト指定
-    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-  augroup END
-  call ZenkakuSpace()
-endif
-
-""""""""""""""""""""""""""""""
 "grep,tagsのためカレントディレクトリをファイルと同じディレクトリに移動する
 """"""""""""""""""""""""""""""
 "if exists('+autochdir')
@@ -364,7 +312,7 @@ endif
 "endfunction
 
 "----------------------------------------
-" 各種プラグイン設定
+" Plugin
 "----------------------------------------
 
 "----------------------------------------
