@@ -1,4 +1,5 @@
 set nocompatible
+filetype off
 scriptencoding cp932
 
 "----------------------------------------
@@ -221,6 +222,14 @@ set pastetoggle=<F2>
 " in insert mode, jj means <ESC>.
 inoremap jj <ESC>
 
+" When insert mode, enable hjkl and enable go to home/end.
+imap <c-o> <END>
+imap <c-a> <HOME>
+imap <c-h> <LEFT>
+imap <c-j> <DOWN>
+imap <c-k> <UP>
+imap <c-l> <Right>
+
 "----------------------------------------
 " VISUAL MODE
 "----------------------------------------
@@ -314,6 +323,53 @@ endfunction
 "----------------------------------------
 " Plugin
 "----------------------------------------
+set rtp+=~/YusukeDev/dotfiles/vimfiles/vundle.git/
+call vundle#rc()
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimfiler'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
+"Bundle 'thinca/vim-ref'
+Bundle 'thinca/vim-quickrun'
+filetype plugin indent on     " required!
+
+
+
+"-----------------------
+" neocomplcache
+"-----------------------
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+			\ 'default' : '',
+			\ 'vimshell' : $HOME.'/.vimshell_hist',
+			\ 'scheme' : $HOME.'/.gosh_completions'
+			\ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+	let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" 補完候補色
+hi Pmenu ctermfg= 'white'
+hi PmenuSel ctermfg=12
+hi PmenuSbar ctermfg=0
 
 "----------------------------------------
 " 一時設定
