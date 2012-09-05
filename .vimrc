@@ -325,13 +325,13 @@ endfunction
 "----------------------------------------
 set rtp+=~/YusukeDev/dotfiles/vimfiles/vundle.git/
 call vundle#rc()
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
+"Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/unite.vim'
+"Bundle 'Shougo/vimfiler'
+"Bundle 'Shougo/vimproc'
+"Bundle 'Shougo/vimshell'
 "Bundle 'thinca/vim-ref'
-Bundle 'thinca/vim-quickrun'
+"Bundle 'thinca/vim-quickrun'
 filetype plugin indent on     " required!
 
 
