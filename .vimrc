@@ -57,10 +57,13 @@ set tabstop=4
 "再読込、vim終了後も継続するアンドゥ(7.3)
 if version >= 703
   "Persistent undoを有効化(7.3)
-  "set undofile
+  set undofile
   "アンドゥの保存場所(7.3)
-  "set undodir=.
+  set undodir=~/.vimundo
 endif
+
+" タブでスペースが入力されるようにする
+set expandtab
 
 "マウスを有効にする
 if has('mouse')
@@ -128,7 +131,11 @@ hi Comment ctermfg=gray
 "hi SpecialKey ctermfg=Blue guifg=Blue
 "hi NonText ctermfg=Blue guifg=Blue
 "hi JpSpace cterm=underline ctermfg=Blue guifg=Blue
-"au BufRead,BufNew * match JpSpace /　/
+"au BufRead,BufNew * match JpSpace /　/"
+
+"F8 show tabs, carriage returns etc.
+map <F8> :set nolist!<CR>:set nolist?<CR>
+map! <F8> <ESC> :set nolist!<CR>:set nolist?<CR>
 
 
 """"""""""""""""""""""""""""""
