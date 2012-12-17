@@ -75,7 +75,7 @@ alias findgrep='grepfind'
 ## ls
 #-------------------
 alias ls='ls -G'
-alias ls='ls --color'
+#alias ls='ls --color'
 alias la='ls -a'
 alias ll='ls -l'
 alias lll='ls -la'
