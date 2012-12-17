@@ -75,7 +75,6 @@ alias findgrep='grepfind'
 ## ls
 #-------------------
 alias ls='ls -G'
-#alias ls='ls --color'
 alias la='ls -a'
 alias ll='ls -l'
 alias lll='ls -la'
@@ -109,4 +108,4 @@ alias rm="~/bin/rm.sh"
 
 #zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
-[ -f ~/.zshrc.local] && source ~/.zshrc.local # 設定ファイルのinclude
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local # 環境依存の設定をinclude
