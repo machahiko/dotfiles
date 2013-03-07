@@ -25,7 +25,7 @@ setopt list_types                 # 補完一覧ファイル種別表示
 # カラー設定
 #-------------------
 export CLICOLOR=1
-export LSCOLORS=exfxcxdxbxegedabagacad
+export LSCOLORS=gxfxcxdxbxegedabagacad
 export LS_COLORS='di=35:ln=34:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}↲
 #zstyle ':completion:*' list-colors 'di=35' 'ln=34' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
@@ -100,7 +100,6 @@ alias vi='vim'
 #alias ctags='ctags -R -a -f tags'
 alias ctags="ctags -R --langmap=PHP:.php.inc --php-types=c+f+d --exclude=.svn --exclude=svn --exclude=subversion --exclude=img --exclude=htdocs --exclude=share --exclude=swf --exclude=tpl --exclude=htdocs --exclude=html --exclude='.*'"
 alias screen="screen -U"
-#alias rm="~/bin/rm.sh"
 
 #-------------------
 ## DB_Connect
