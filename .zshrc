@@ -100,7 +100,7 @@ alias vi='vim'
 #alias ctags='ctags -R -a -f tags'
 alias ctags="ctags -R --langmap=PHP:.php.inc --php-types=c+f+d --exclude=.svn --exclude=svn --exclude=subversion --exclude=img --exclude=htdocs --exclude=share --exclude=swf --exclude=tpl --exclude=htdocs --exclude=html --exclude='.*'"
 alias screen="screen -U"
-alias rm="~/bin/rm.sh"
+#alias rm="~/bin/rm.sh"
 
 #-------------------
 ## DB_Connect
