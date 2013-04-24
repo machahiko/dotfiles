@@ -1,47 +1,26 @@
 set nocompatible
-filetype off
+filetype off "最後に再びonにする
 scriptencoding cp932
-
-"----------------------------------------
-" User Runtime Path Settings
-"----------------------------------------
-"Windows, unixでのruntimepathの違いを吸収するためのもの。 
-"$MY_VIMRUNTIMEはユーザーランタイムディレクトリを示す。 
-":echo $MY_VIMRUNTIMEで実際のパスを確認できます。 
-if isdirectory($HOME . '/.vim') 
-  let $MY_VIMRUNTIME = $HOME.'/.vim' 
-elseif isdirectory($HOME . '\vimfiles') 
-  let $MY_VIMRUNTIME = $HOME.'\vimfiles' 
-elseif isdirectory($VIM . '\vimfiles') 
-  let $MY_VIMRUNTIME = $VIM.'\vimfiles' 
-endif 
-"ランタイムパスを通す必要のあるプラグインを使用する場合
-"$MY_VIMRUNTIMEを使用すると Windows/Linuxで切り分ける必要が無くなります。 
-"例) vimfiles/qfixapp (Linuxでは~/.vim/qfixapp)にランタイムパスを通す場合 
-"set runtimepath+=$MY_VIMRUNTIME/qfixapp
-
 
 "----------------------------------------
 " General
 "----------------------------------------
-set nowritebackup "ファイルの上書きの前にバックアップを作らない
-set nobackup "バックアップ/スワップファイルを作成する/しない
-"set noswapfile
-"set viminfo= "viminfoを作成しない
-set clipboard+=unnamed "クリップボードを共有
-set nrformats-=octal "8進数を無効にする。<C-a>,<C-x>に影響する
-set timeoutlen=3500 "キーコードやマッピングされたキー列が完了するのを待つ時間(ミリ秒)
-set hidden "編集結果非保存のバッファから、新しいバッファを開くときに警告を出さない
-set history=50 "ヒストリの保存数
-set formatoptions+=mM "日本語の行の連結時には空白を入力しない
-set virtualedit=block "Visual blockモードでフリーカーソルを有効にする
-set whichwrap=b,s,[,],<,> "カーソルキーで行末／行頭の移動可能に設定
-set backspace=indent,eol,start "バックスペースでインデントや改行を削除できるようにする
-set ambiwidth=double "□や○の文字があってもカーソル位置がずれないようにする
-set wildmenu "コマンドライン補完するときに強化されたものを使う
-
-set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
-set pastetoggle=<F2> "F2でpasteモードに。pasteするときにインデントを無効化。
+set nowritebackup               " ファイルの上書きの前にバックアップを作らない
+set nobackup                    " バックアップ/スワップファイルを作成する/しない
+set noswapfile                  " スワップファイルを作成しない
+"set viminfo=                   " viminfoを作成しない
+set clipboard+=unnamed          " クリップボードを共有
+set nrformats-=octal            " 8進数を無効にする。<C-a>,<C-x>に影響する
+set timeoutlen=3500             " キーコードやマッピングされたキー列が完了するのを待つ時間(ミリ秒)
+set hidden                      " 編集結果非保存のバッファから、新しいバッファを開くときに警告を出さない
+set history=50                  " ヒストリの保存数
+set formatoptions+=mM           " 日本語の行の連結時には空白を入力しない
+set virtualedit=block           " Visual blockモードでフリーカーソルを有効にする
+set whichwrap=b,s,[,],<,>       " カーソルキーで行末／行頭の移動可能に設定
+set backspace=indent,eol,start  " バックスペースでインデントや改行を削除できるようにする
+set ambiwidth=double            " □や○の文字があってもカーソル位置がずれないようにする
+set wildmenu                    " コマンドライン補完するときに強化されたものを使う
+set whichwrap=b,s,h,l,<,>,[,]   " カーソルを行頭、行末で止まらないようにする
 
 " エンコーディング
 set encoding=utf-8
@@ -53,6 +32,7 @@ set smartindent
 set smarttab
 set shiftwidth=4
 set tabstop=4
+set expandtab " タブでスペースが入力されるようにする
 
 "再読込、vim終了後も継続するアンドゥ(7.3)
 if version >= 703
@@ -62,14 +42,11 @@ if version >= 703
   set undodir=~/.vimundo
 endif
 
-" タブでスペースが入力されるようにする
-set expandtab
 
 "マウスを有効にする
 if has('mouse')
   set mouse=a
 endif
-filetype plugin indent on "pluginを使用可能にする
 
 "----------------------------------------
 " Search
@@ -78,9 +55,9 @@ filetype plugin indent on "pluginを使用可能にする
 "ただし大文字小文字の両方が含まれている場合は大文字小文字を区別する
 set ignorecase
 set smartcase
-set wrapscan "検索時にファイルの最後まで行ったら最初に戻る
+set wrapscan  "検索時にファイルの最後まで行ったら最初に戻る
 set incsearch "インクリメンタルサーチ
-set hlsearch "検索文字の強調表示
+set hlsearch  "検索文字の強調表示
 "w,bの移動で認識する文字
 "set iskeyword=a-z,A-Z,48-57,_,.,-,>
 "vimgrep をデフォルトのgrepとする場合internal
@@ -89,24 +66,22 @@ set hlsearch "検索文字の強調表示
 "----------------------------------------
 " View 
 "----------------------------------------
-"set shortmess+=I "スプラッシュ(起動時のメッセージ)を表示しない
-set noerrorbells "エラー時の音とビジュアルベルの抑制(gvimは.gvimrcで設定)
+set shortmess+=I          "スプラッシュ(起動時のメッセージ)を表示しない
+set noerrorbells          "エラー時の音とビジュアルベルの抑制(gvimは.gvimrcで設定)
 set novisualbell
 set visualbell t_vb=
-"set lazyredraw "マクロ実行中などの画面再描画を行わない
-set shellslash "Windowsでディレクトリパスの区切り文字表示に / を使えるようにする
-set number "行番号表示
+"set lazyredraw           "マクロ実行中などの画面再描画を行わない
+set shellslash            "Windowsでディレクトリパスの区切り文字表示に / を使えるようにする
+set number                "行番号表示
 set ruler
 set showmatch matchtime=1 "括弧の対応表示時間
-set ts=2 sw=2 sts=2 "タブを設定
-set autoindent "自動的にインデントする
-set cinoptions+=:0 "Cインデントの設定
-set title "タイトルを表示
-set cmdheight=2 "コマンドラインの高さ (gvimはgvimrcで指定)
+set cinoptions+=:0        "Cインデントの設定
+set title                 "タイトルを表示
+set cmdheight=2           "コマンドラインの高さ (gvimはgvimrcで指定)
 set laststatus=2
-set showcmd "コマンドをステータス行に表示
-set display=lastline "画面最後の行をできる限り表示する
-set list "Tab、行末の半角スペースを明示的に表示する
+set showcmd               "コマンドをステータス行に表示
+set display=lastline      "画面最後の行をできる限り表示する
+set list                  "Tab、行末の半角スペースを明示的に表示する
 set listchars=tab:^\ ,trail:~
 
 " ハイライトを有効にする
@@ -126,12 +101,12 @@ colorscheme desert
 hi Comment ctermfg=gray
 
 "タブ、全角スペースを表示
-"set list
+set list
 "set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-"hi SpecialKey ctermfg=Blue guifg=Blue
-"hi NonText ctermfg=Blue guifg=Blue
-"hi JpSpace cterm=underline ctermfg=Blue guifg=Blue
-"au BufRead,BufNew * match JpSpace /　/"
+hi SpecialKey ctermfg=Blue guifg=Blue
+hi NonText ctermfg=Blue guifg=Blue
+hi JpSpace cterm=underline ctermfg=Blue guifg=Blue
+au BufRead,BufNew * match JpSpace /　/"
 
 "F8 show tabs, carriage returns etc.
 map <F8> :set nolist!<CR>:set nolist?<CR>
@@ -218,18 +193,16 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"steモードに。pasteするときにインデントを無効化。
 " <F2> to paste mode.
 set pastetoggle=<F2>
 
 "----------------------------------------
 " INSERT MODE
 "----------------------------------------
-"insertモードでjj押せばノーマルモードに。
-" in insert mode, jj means <ESC>.
+" insertモードでjj押せばノーマルモードに。
 inoremap jj <ESC>
 
-" When insert mode, enable hjkl and enable go to home/end.
+" コントロール+hjklでNormalモードの時のようにカーソル移動
 imap <c-o> <END>
 imap <c-a> <HOME>
 imap <c-h> <LEFT>
@@ -308,24 +281,6 @@ endfunction
 "  au BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 "endif
 
-""""""""""""""""""""""""""""""
-"Windowsで内部エンコーディングがcp932以外の場合
-"makeのメッセージが化けるのを回避
-""""""""""""""""""""""""""""""
-"if has('win32') || has('win64') || has('win95') || has('win16')
-"  au QuickfixCmdPost make call QFixCnv('cp932')
-"endif
-"
-"function! QFixCnv(enc)
-"  if a:enc == &enc
-"    return
-"  endif
-"  let qflist = getqflist()
-"  for i in qflist
-"    let i.text = iconv(i.text, a:enc, &enc)
-"  endfor
-"  call setqflist(qflist)
-"endfunction
 
 "----------------------------------------
 " Plugin
@@ -362,14 +317,14 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
-			\ 'default' : '',
-			\ 'vimshell' : $HOME.'/.vimshell_hist',
-			\ 'scheme' : $HOME.'/.gosh_completions'
-			\ }
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ }
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
-	let g:neocomplcache_keyword_patterns = {}
+  let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
@@ -378,15 +333,12 @@ hi Pmenu ctermfg= 'white'
 hi PmenuSel ctermfg=12
 hi PmenuSbar ctermfg=0
 
-"----------------------------------------
-" 一時設定
-"----------------------------------------
-
+filetype plugin indent on
 
 "----------------------------------------
 " MacVim
 "----------------------------------------
 if has("gui_macvim")
-	let macvim_hig_shift_movement = 1
+  let macvim_hig_shift_movement = 1
 endif
 
