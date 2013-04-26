@@ -292,10 +292,66 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
+Bundle 'h1mesuke/unite-outline'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 filetype plugin indent on     " required!
 
+
+"-----------------------
+" Unite.vim
+"-----------------------
+" 起動時にインサートモードで開始
+let g:unite_enable_start_insert = 1
+" The prefix key.
+nnoremap [unite] <Nop>
+nmap <C-f> [unite]
+
+let g:unite_source_file_mru_limit = 200
+let g:unite_enable_split_vertically = 1 "縦分割で開く
+let g:unite_winwidth = 40 "横幅40で開く
+
+nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files -prompt=%\  buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
+nnoremap  [unite]f  :<C-u>Unite source<CR>
+" @see https://github.com/h1mesuke/unite-outline
+nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
+" @see https://github.com/ujihisa/unite-colorscheme
+nnoremap [unite]l :<C-u>Unite -auto-preview colorscheme<CR>
+" @see https://github.com/tsukkee/unite-tag
+" searching tag by words on cursor.
+nnoremap <silent> [unite]u  :<C-u>Unite -immediately -no-start-insert tag:<C-r>=expand('<cword>')<CR><CR>
+" show tags
+nnoremap <silent> [unite]t  :<C-u>Unite tag<CR>
+
+"uniteを開いている間のキーマッピング
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+  "ESCでuniteを終了
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+  "入力モードのときjjでノーマルモードに移動
+  imap <buffer> jj <Plug>(unite_insert_leave)
+  "入力モードのときctrl+wでバックスラッシュも削除
+  imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+  "ctrl+jで縦に分割して開く
+  nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+  inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+  "ctrl+jで横に分割して開く
+  nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+  inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+  "ctrl+oでその場所に開く
+  nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+  inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+endfunction"}}}
+
+
+
+" インサート／ノーマルどちらからでも呼び出せるようにキーマップ
+"nnoremap <silent> <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+"inoremap <silent> <C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+"nnoremap <silent> <C-b> :<C-u>Unite buffer file_mru<CR>
+"inoremap <silent> <C-b> <ESC>:<C-u>Unite buffer file_mru<CR>
 
 
 "-----------------------
