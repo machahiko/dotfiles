@@ -295,6 +295,7 @@ Bundle 'Shougo/vimshell'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
+Bundle 'tomtom/tcomment_vim'
 filetype plugin indent on     " required!
 
 
@@ -309,11 +310,11 @@ nmap <C-f> [unite]
 
 let g:unite_source_file_mru_limit = 200
 let g:unite_enable_split_vertically = 1 "縦分割で開く
-let g:unite_winwidth = 40 "横幅40で開く
+let g:unite_winwidth = 30 "横幅30で開く
 
-nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
-nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files -prompt=%\  buffer file_mru bookmark file<CR>
-nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir -no-quit -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir  -no-quit -buffer-name=files -prompt=%\  buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite -no-quit -buffer-name=register register<CR>
 nnoremap  [unite]f  :<C-u>Unite source<CR>
 " @see https://github.com/h1mesuke/unite-outline
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
@@ -344,14 +345,6 @@ function! s:unite_my_settings()"{{{
   nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
   inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 endfunction"}}}
-
-
-
-" インサート／ノーマルどちらからでも呼び出せるようにキーマップ
-"nnoremap <silent> <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-"inoremap <silent> <C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-"nnoremap <silent> <C-b> :<C-u>Unite buffer file_mru<CR>
-"inoremap <silent> <C-b> <ESC>:<C-u>Unite buffer file_mru<CR>
 
 
 "-----------------------
