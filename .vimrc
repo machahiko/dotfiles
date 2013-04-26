@@ -171,7 +171,7 @@ endfunction
 " NORMAL MODE
 "----------------------------------------
 "ヘルプ検索
-nnoremap <F1> K
+nnoremap <F3> K
 "現在開いているvimスクリプトファイルを実行
 nnoremap <F8> :source %<CR>
 "強制全保存終了を無効化
@@ -346,6 +346,34 @@ function! s:unite_my_settings()"{{{
   inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 endfunction"}}}
 
+"-----------------------
+" neocomplcache
+"
+" F1で出したり隠したり
+" ファイル上でsを押すと別ウィンドウを横分割して開く
+" ファイル上でvを押すと別ウィンドウを縦分割して開く
+"-----------------------
+nnoremap <F1> :<C-u>VimFilerBufferDir -split -simple -toggle -winwidth=35 -no-quit<CR>
+autocmd! FileType vimfiler call g:my_vimfiler_settings()
+function! g:my_vimfiler_settings()
+  nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+  nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<Cr>
+  nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
+endfunction
+
+let s:my_action = { 'is_selectable' : 1 }
+function! s:my_action.func(candidates)
+  wincmd p
+  exec 'split '. a:candidates[0].action__path
+endfunction
+call unite#custom_action('file', 'my_split', s:my_action)
+
+let s:my_action = { 'is_selectable' : 1 }
+function! s:my_action.func(candidates)
+  wincmd p
+  exec 'vsplit '. a:candidates[0].action__path
+endfunction
+call unite#custom_action('file', 'my_vsplit', s:my_action)
 
 "-----------------------
 " neocomplcache
