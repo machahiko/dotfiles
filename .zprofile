@@ -16,6 +16,6 @@ zstyle ':completion:*' list-colors 'di=35' 'ln=34' 'so=32' 'ex=31' 'bd=46;34' 'c
 #-------------------
 # PATH設定
 #-------------------
-export PATH=$PATH:/usr/local/bin:/bin:/usr/bin:/opt/local/bin
+export PATH=$PATH:/opt/local/bin
 export PATH
 

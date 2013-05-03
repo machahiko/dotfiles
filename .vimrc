@@ -296,6 +296,10 @@ Bundle 'h1mesuke/unite-outline'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-pathogen'
+Bundle 'scrooloose/syntastic'
+call pathogen#infect()
+
 filetype plugin indent on     " required!
 
 
