@@ -50,3 +50,4 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 source $HOME/.dotfiles/.zshrc.mine
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
