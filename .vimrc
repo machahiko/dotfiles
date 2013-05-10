@@ -298,6 +298,7 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-pathogen'
 Bundle 'scrooloose/syntastic'
+Bundle 'mattn/zencoding-vim'
 call pathogen#infect()
 
 filetype plugin indent on     " required!
