@@ -433,6 +433,11 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
 
+"<TAB>でスニペット補完
+if g:neocomplcache_enable_at_startup
+  imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_jump_or_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+endif
+
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
