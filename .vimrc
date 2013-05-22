@@ -288,6 +288,7 @@ endfunction
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'Shougo/vimproc'
@@ -299,6 +300,7 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-pathogen'
 Bundle 'scrooloose/syntastic'
 Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-surround'
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -352,7 +354,7 @@ function! s:unite_my_settings()"{{{
 endfunction"}}}
 
 "-----------------------
-" neocomplcache
+" vimfiler
 "
 " F1で出したり隠したり
 " ファイル上でsを押すと別ウィンドウを横分割して開く
@@ -415,7 +417,29 @@ hi Pmenu ctermfg= 'white'
 hi PmenuSel ctermfg=12
 hi PmenuSbar ctermfg=0
 
-filetype plugin indent on
+"-----------------------
+" neosnippe
+"-----------------------
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet/autoload/neosnippet/snippets'
+
 
 "----------------------------------------
 " MacVim
@@ -423,4 +447,6 @@ filetype plugin indent on
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
 endif
+
+filetype plugin indent on
 
