@@ -24,7 +24,7 @@ set whichwrap=b,s,h,l,<,>,[,]   " カーソルを行頭、行末で止まらな�
 
 " エンコーディング
 set encoding=utf-8
-set fileencodings=euc-jp
+set fileencodings=utf-8,euc-jp,iso-2022-jp,sjis
 
 "インデント関連
 set autoindent
