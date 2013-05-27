@@ -301,6 +301,11 @@ Bundle 'tpope/vim-pathogen'
 Bundle 'scrooloose/syntastic'
 Bundle 'mattn/zencoding-vim'
 Bundle 'tpope/vim-surround'
+Bundle 'jiangmiao/simple-javascript-indenter'
+Bundle 'vim-scripts/jQuery'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'teramako/jscomplete-vim'
+Bundle 'majutsushi/tagbar'
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -444,6 +449,37 @@ if has('conceal')
 endif
 
 " let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet/autoload/neosnippet/snippets'
+
+
+"-----------------------------
+" syntastic
+"-----------------------------
+" jshintを使ってチェック
+let g:syntastic_javascript_checker = "jshint"
+
+"-----------------------------
+" simple-javascript-indenter
+"-----------------------------
+" shiftwidthを1にしてインデント
+let g:SimpleJsIndenter_BriefMode = 1
+" switchのインデントが良くなる
+let g:SimpleJsIndenter_CaseIndentLevel = -1
+
+"-----------------------------
+" jQuery syntax
+"-----------------------------
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+"-----------------------------
+" jscomplete-vim
+"-----------------------------
+" DOMとMozilla関連とES6のメソッドを補完
+let g:jscomplete_use = ['dom', 'moz', 'es6th']
+
+"-----------------------------
+" tagbar
+"-----------------------------
+nmap <F8> :TagbarToggle<CR>
 
 
 "----------------------------------------
