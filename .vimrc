@@ -491,3 +491,10 @@ endif
 
 filetype plugin indent on
 
+
+"----------------------------------------
+" local設定の読み込み
+"----------------------------------------
+if filereadable(expand('~/.vimrc.local'))
+    source ~/.vimrc.local
+endif
