@@ -306,6 +306,9 @@ Bundle 'vim-scripts/jQuery'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'teramako/jscomplete-vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'vim-scripts/YankRing.vim'
+Bundle 'Townk/vim-autoclose'
+Bundle 'vim-scripts/closetag.vim'
 call pathogen#infect()
 
 filetype plugin indent on     " required!
