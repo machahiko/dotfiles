@@ -309,6 +309,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Townk/vim-autoclose'
 Bundle 'vim-scripts/closetag.vim'
+" Bundle 'joonty/vdebug'
+" Bundle 'vim-scripts/DBGp-client'
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -484,6 +486,9 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
 "-----------------------------
 nmap <F8> :TagbarToggle<CR>
 
+"-----------------------------
+" debug
+"-----------------------------
 
 "----------------------------------------
 " MacVim
