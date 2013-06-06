@@ -329,10 +329,19 @@ let g:unite_source_file_mru_limit = 200
 let g:unite_enable_split_vertically = 1 "縦分割で開く
 let g:unite_winwidth = 30 "横幅30で開く
 
-nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir -no-quit -buffer-name=files buffer file_mru bookmark file<CR>
-nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir  -no-quit -buffer-name=files -prompt=%\  buffer file_mru bookmark file<CR>
-nnoremap <silent> [unite]r  :<C-u>Unite -no-quit -buffer-name=register register<CR>
-nnoremap  [unite]f  :<C-u>Unite source<CR>
+"現在開いているファイルのディレクトリ下のファイル一覧。
+""開いていない場合はカレントディレクトリ
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+"バッファ一覧
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+""レジスタ一覧
+nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+"最近使用したファイル一覧
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+""ブックマーク一覧
+nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
+"ブックマークに追加
+nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 " @see https://github.com/h1mesuke/unite-outline
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 " @see https://github.com/ujihisa/unite-colorscheme
