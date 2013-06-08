@@ -327,7 +327,7 @@ nmap <C-f> [unite]
 
 let g:unite_source_file_mru_limit = 200
 let g:unite_enable_split_vertically = 1 "縦分割で開く
-let g:unite_winwidth = 30 "横幅30で開く
+" let g:unite_winwidth = 30 "横幅30で開く
 
 "現在開いているファイルのディレクトリ下のファイル一覧。
 ""開いていない場合はカレントディレクトリ
