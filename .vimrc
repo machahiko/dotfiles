@@ -21,6 +21,7 @@ set backspace=indent,eol,start  " バックスペースでインデントや改�
 set ambiwidth=double            " □や○の文字があってもカーソル位置がずれないようにする
 set wildmenu                    " コマンドライン補完するときに強化されたものを使う
 set whichwrap=b,s,h,l,<,>,[,]   " カーソルを行頭、行末で止まらないようにする
+set foldmethod=marker           " {{{ ~~~  }}}による折りたたみを有効にする
 
 " エンコーディング
 set encoding=utf-8
