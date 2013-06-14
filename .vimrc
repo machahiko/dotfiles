@@ -3,6 +3,19 @@ filetype off "最後に再びonにする
 scriptencoding cp932
 
 "----------------------------------------
+" Function Key Actions
+"----------------------------------------
+"F1     vimfiler toggle
+"F2     paste mode toggle
+"F3     unite 最近使用したファイル
+"F4     unite bookmark
+"F7     現在開いているvimスクリプトファイルを実行
+"F8     show tabs toggle
+"F10    TagbarToggle
+"F12    ヘルプ検索
+
+
+"----------------------------------------
 " General
 "----------------------------------------
 set nowritebackup               " ファイルの上書きの前にバックアップを作らない
@@ -21,7 +34,7 @@ set backspace=indent,eol,start  " バックスペースでインデントや改�
 set ambiwidth=double            " □や○の文字があってもカーソル位置がずれないようにする
 set wildmenu                    " コマンドライン補完するときに強化されたものを使う
 set whichwrap=b,s,h,l,<,>,[,]   " カーソルを行頭、行末で止まらないようにする
-set foldmethod=marker           " {{{ ~~~  }}}による折りたたみを有効にする
+set foldmethod=marker           " {{{ }}}で折りたたみを可能に
 
 " エンコーディング
 set encoding=utf-8
@@ -172,9 +185,9 @@ endfunction
 " NORMAL MODE
 "----------------------------------------
 "ヘルプ検索
-nnoremap <F3> K
+nnoremap <F12> K
 "現在開いているvimスクリプトファイルを実行
-nnoremap <F8> :source %<CR>
+nnoremap <F7> :source %<CR>
 "強制全保存終了を無効化
 nnoremap ZZ <Nop>
 "カーソルをj k では表示行で移動する。物理行移動は<C-n>,<C-p>
@@ -310,6 +323,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Townk/vim-autoclose'
 Bundle 'vim-scripts/closetag.vim'
+Bundle 'vim-scripts/gtags.vim'
 " Bundle 'joonty/vdebug'
 " Bundle 'vim-scripts/DBGp-client'
 call pathogen#infect()
@@ -339,8 +353,10 @@ nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 "最近使用したファイル一覧
 nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <F3> :<C-u>Unite file_mru<CR>
 ""ブックマーク一覧
 nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
+nnoremap <F4> :<C-u>Unite bookmark<CR>
 "ブックマークに追加
 nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 " @see https://github.com/h1mesuke/unite-outline
@@ -494,11 +510,29 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
 "-----------------------------
 " tagbar
 "-----------------------------
-nmap <F8> :TagbarToggle<CR>
+nmap <F10> :TagbarToggle<CR>
 
 "-----------------------------
 " debug
 "-----------------------------
+
+
+" -----------------------------------------------------------------------------
+" gtags.vim
+" -----------------------------------------------------------------------------
+
+" grep設定用
+nmap <C-g><C-g> :Gtags -g
+" ファイル中で定義されている関数一覧表示
+nmap <C-g><C-f> :Gtags -f %<CR>
+" 使用箇所-定義箇所を移動
+nmap <C-g><C-d> :Gtags <C-r><C-w><CR>
+" 定義箇所-使用箇所を移動
+nmap <C-g><C-r> :Gtags -r <C-r><C-w><CR>
+" カーソル位置の関数へ移動
+nmap <C-g><C-i> :GtagsCursor<CR>
+" 検索結果を閉じる
+nmap <C-g><C-w> <C-w><C-w><C-w>q
 
 "----------------------------------------
 " MacVim
