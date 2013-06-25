@@ -295,7 +295,7 @@ endfunction
 "  au BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 "endif
 
-
+" {{{ Plugins
 "----------------------------------------
 " Plugin
 "----------------------------------------
@@ -315,7 +315,7 @@ Bundle 'tpope/vim-pathogen'
 Bundle 'scrooloose/syntastic'
 Bundle 'mattn/zencoding-vim'
 Bundle 'tpope/vim-surround'
-Bundle 'jiangmiao/simple-javascript-indenter'
+" Bundle 'jiangmiao/simple-javascript-indenter'
 Bundle 'vim-scripts/jQuery'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'teramako/jscomplete-vim'
@@ -324,13 +324,14 @@ Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Townk/vim-autoclose'
 Bundle 'vim-scripts/closetag.vim'
 Bundle 'vim-scripts/gtags.vim'
+Bundle 'vim-scripts/JavaScript-Indent'
 " Bundle 'joonty/vdebug'
 " Bundle 'vim-scripts/DBGp-client'
 call pathogen#infect()
 
 filetype plugin indent on     " required!
 
-
+" {{{ Unite
 "-----------------------
 " Unite.vim
 "-----------------------
@@ -388,7 +389,9 @@ function! s:unite_my_settings()"{{{
   nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
   inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 endfunction"}}}
+" }}}
 
+" {{{ vimfiler
 "-----------------------
 " vimfiler
 "
@@ -417,7 +420,9 @@ function! s:my_action.func(candidates)
   exec 'vsplit '. a:candidates[0].action__path
 endfunction
 call unite#custom_action('file', 'my_vsplit', s:my_action)
+" }}}
 
+" {{{ neocomplcache
 "-----------------------
 " neocomplcache
 "-----------------------
@@ -434,6 +439,16 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Setting for Javascript
+autocmd FileType javascript,coffee setlocal omnifunc=javascriptcomplete#CompleteJS
+
+let g:neocomplcache_source_rank = {
+  \ 'jscomplete' : 500,
+  \ }
+
+" dom も含める
+let g:jscomplete_use = ['dom']
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
@@ -452,7 +467,9 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 hi Pmenu ctermfg= 'white'
 hi PmenuSel ctermfg=12
 hi PmenuSbar ctermfg=0
+" }}}
 
+" {{{ neosnippe
 "-----------------------
 " neosnippe
 "-----------------------
@@ -480,43 +497,55 @@ if has('conceal')
 endif
 
 " let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet/autoload/neosnippet/snippets'
+" }}}
 
-
+" {{{ syntastic
 "-----------------------------
 " syntastic
 "-----------------------------
 " jshintを使ってチェック
 let g:syntastic_javascript_checkers = ["jshint"]
+" }}}
 
+" {{{ simple-javascript-indenter
 "-----------------------------
 " simple-javascript-indenter
 "-----------------------------
 " shiftwidthを1にしてインデント
-let g:SimpleJsIndenter_BriefMode = 1
+" let g:SimpleJsIndenter_BriefMode = 1
 " switchのインデントが良くなる
-let g:SimpleJsIndenter_CaseIndentLevel = -1
+" let g:SimpleJsIndenter_CaseIndentLevel = -1
+" }}}
 
+" {{{ jQuery syntax
 "-----------------------------
 " jQuery syntax
 "-----------------------------
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+" }}}
 
+" {{{ jscomplete-vim
 "-----------------------------
 " jscomplete-vim
 "-----------------------------
 " DOMとMozilla関連とES6のメソッドを補完
 let g:jscomplete_use = ['dom', 'moz', 'es6th']
+" }}}
 
+" {{{ tagbar
 "-----------------------------
 " tagbar
 "-----------------------------
 nmap <F10> :TagbarToggle<CR>
+" }}}
 
+" {{{ debug
 "-----------------------------
 " debug
 "-----------------------------
+" }}}
 
-
+" {{{ gtags
 " -----------------------------------------------------------------------------
 " gtags.vim
 " -----------------------------------------------------------------------------
@@ -533,13 +562,18 @@ nmap <C-g><C-r> :Gtags -r <C-r><C-w><CR>
 nmap <C-g><C-i> :GtagsCursor<CR>
 " 検索結果を閉じる
 nmap <C-g><C-w> <C-w><C-w><C-w>q
+" }}}
 
+" }}}
+
+" {{{ MacVim
 "----------------------------------------
 " MacVim
 "----------------------------------------
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
 endif
+" }}}
 
 filetype plugin indent on
 
