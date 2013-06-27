@@ -326,6 +326,9 @@ Bundle 'vim-scripts/closetag.vim'
 Bundle 'vim-scripts/gtags.vim'
 " Bundle 'vim-scripts/JavaScript-Indent'
 Bundle 'pangloss/vim-javascript'
+" Bundle 'taichouchou2/alpaca_powertabline'
+" Bundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'} }
+Bundle 'Lokaltog/vim-powerline'
 " Bundle 'joonty/vdebug'
 " Bundle 'vim-scripts/DBGp-client'
 call pathogen#infect()
@@ -538,6 +541,10 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
 " tagbar
 "-----------------------------
 nmap <F10> :TagbarToggle<CR>
+" }}}
+
+" {{{ powerline
+" let g:Powerline_symbols = 'fancy'
 " }}}
 
 " {{{ debug
