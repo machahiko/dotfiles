@@ -334,8 +334,8 @@ NeoBundle 'vim-scripts/gtags.vim'
 " NeoBundle 'vim-scripts/JavaScript-Indent'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'taichouchou2/alpaca_powertabline'
-" NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+" NeoBundle 'Lokaltog/vim-powerline'
 " NeoBundle 'joonty/vdebug'
 " NeoBundle 'vim-scripts/DBGp-client'
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -554,7 +554,7 @@ nmap <F10> :TagbarToggle<CR>
 " }}}
 
 " {{{ powerline
-" let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
 " }}}
 
 " {{{ debug
