@@ -299,38 +299,41 @@ endfunction
 "----------------------------------------
 " Plugin
 "----------------------------------------
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'thinca/vim-ref'
-Bundle 'thinca/vim-quickrun'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-pathogen'
-Bundle 'scrooloose/syntastic'
-Bundle 'mattn/zencoding-vim'
-Bundle 'tpope/vim-surround'
-" Bundle 'jiangmiao/simple-javascript-indenter'
-Bundle 'vim-scripts/jQuery'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'teramako/jscomplete-vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'Townk/vim-autoclose'
-Bundle 'vim-scripts/closetag.vim'
-Bundle 'vim-scripts/gtags.vim'
-" Bundle 'vim-scripts/JavaScript-Indent'
-Bundle 'pangloss/vim-javascript'
-" Bundle 'taichouchou2/alpaca_powertabline'
-" Bundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'} }
-Bundle 'Lokaltog/vim-powerline'
-" Bundle 'joonty/vdebug'
-" Bundle 'vim-scripts/DBGp-client'
+set rtp+=~/.dotfiles/neobundle.vim
+if has('vim_starting')
+  set runtimepath+=~/dotfiles/neobundle.vim
+  call neobundle#rc(expand('~/.vim/'))
+endif
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'tpope/vim-pathogen'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'tpope/vim-surround'
+" NeoBundle 'jiangmiao/simple-javascript-indenter'
+NeoBundle 'vim-scripts/jQuery'
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'teramako/jscomplete-vim'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'vim-scripts/YankRing.vim'
+NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'vim-scripts/closetag.vim'
+NeoBundle 'vim-scripts/gtags.vim'
+" NeoBundle 'vim-scripts/JavaScript-Indent'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'taichouchou2/alpaca_powertabline'
+" NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'joonty/vdebug'
+" NeoBundle 'vim-scripts/DBGp-client'
 call pathogen#infect()
 
 filetype plugin indent on     " required!
