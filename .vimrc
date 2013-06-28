@@ -2,6 +2,7 @@ set nocompatible
 filetype off "最後に再びonにする
 scriptencoding cp932
 
+" {{{ Function Keys Setting
 "----------------------------------------
 " Function Key Actions
 "----------------------------------------
@@ -14,7 +15,9 @@ scriptencoding cp932
 "F10    TagbarToggle
 "F12    ヘルプ検索
 
+" }}}
 
+" {{{ General Settings
 "----------------------------------------
 " General
 "----------------------------------------
@@ -125,7 +128,6 @@ au BufRead,BufNew * match JpSpace /　/"
 "F8 show tabs, carriage returns etc.
 map <F8> :set nolist!<CR>:set nolist?<CR>
 map! <F8> <ESC> :set nolist!<CR>:set nolist?<CR>
-
 
 """"""""""""""""""""""""""""""
 "ステータスラインに文字コードやBOM、16進表示等表示
@@ -295,6 +297,8 @@ endfunction
 "  au BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 "endif
 
+"" }}}
+
 " {{{ Plugins
 "----------------------------------------
 " Plugin
@@ -334,6 +338,9 @@ NeoBundle 'taichouchou2/alpaca_powertabline'
 NeoBundle 'Lokaltog/vim-powerline'
 " NeoBundle 'joonty/vdebug'
 " NeoBundle 'vim-scripts/DBGp-client'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'taichouchou2/html5.vim'
+NeoBundle 'AtsushiM/sass-compile.vim'
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -573,6 +580,19 @@ nmap <C-g><C-r> :Gtags -r <C-r><C-w><CR>
 nmap <C-g><C-i> :GtagsCursor<CR>
 " 検索結果を閉じる
 nmap <C-g><C-w> <C-w><C-w><C-w>q
+" }}}
+
+" {{{ sass-compile
+au BufRead,BufNewFile *.scss set filetype=sass
+let g:sass_compile_auto = 1
+let g:sass_compile_cdloop = 5
+let g:sass_compile_cssdir = ['css', 'stylesheet']
+let g:sass_compile_file = ['scss', 'sass']
+let g:sass_started_dirs = []
+let g:sass_compile_beforecmd = ""
+
+autocmd FileType less,sass  setlocal sw=2 sts=2 ts=2 et
+au! BufWritePost * SassCompile
 " }}}
 
 " }}}
