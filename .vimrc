@@ -12,7 +12,8 @@ scriptencoding cp932
 "F4     unite bookmark
 "F7     現在開いているvimスクリプトファイルを実行
 "F8     show tabs toggle
-"F10    TagbarToggle
+"F9     TagbarToggle
+"F10    Xdebug BreakPoint
 "F12    ヘルプ検索
 
 " }}}
@@ -336,7 +337,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'taichouchou2/alpaca_powertabline'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 " NeoBundle 'Lokaltog/vim-powerline'
-" NeoBundle 'joonty/vdebug'
+NeoBundle 'joonty/vdebug'
 " NeoBundle 'vim-scripts/DBGp-client'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
@@ -550,7 +551,7 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
 "-----------------------------
 " tagbar
 "-----------------------------
-nmap <F10> :TagbarToggle<CR>
+nmap <F9> :TagbarToggle<CR>
 " }}}
 
 " {{{ powerline
