@@ -342,6 +342,11 @@ NeoBundle 'joonty/vdebug'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'AtsushiM/sass-compile.vim'
+NeoBundle 'vim-scripts/yanktmp'         " 複数セッションでコピー履歴共有
+NeoBundle 'gregsexton/gitv'             " コミットログを見やすく
+NeoBundle 'Lokaltog/vim-easymotion'     " 簡単にカーソル移動
+NeoBundle 'sjl/gundo.vim'               " Undo履歴Visualize
+NeoBundle 'tpope/vim-fugitive'          " git用
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -594,6 +599,28 @@ let g:sass_compile_beforecmd = ""
 
 autocmd FileType less,sass  setlocal sw=2 sts=2 ts=2 et
 au! BufWritePost * SassCompile
+" }}}
+
+" {{{ yanktmp
+map <silent> sy :call YanktmpYank()<CR>
+map <silent> sp :call YanktmpPaste_p()<CR>
+map <silent> sP :call YanktmpPaste_P()<CR>
+" }}}
+
+" {{{ gundo
+nmap U :<C-u>GundoToggle<CR>
+" }}}
+
+" {{{ easy-motion
+" ホームポジションに近いキーを使う
+let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
+" 「;」 + 何かにマッピング
+let g:EasyMotion_leader_key=";"
+" 1 ストローク選択を優先する
+let g:EasyMotion_grouping=1
+" カラー設定変更
+hi EasyMotionTarget ctermbg=none ctermfg=red
+hi EasyMotionShade  ctermbg=none ctermfg=blue
 " }}}
 
 " }}}
