@@ -42,7 +42,7 @@ set foldmethod=marker           " {{{ }}}で折りたたみを可能に
 
 " エンコーディング
 set encoding=utf-8
-set fileencodings=utf-8,euc-jp,iso-2022-jp,sjis
+set fileencodings=euc-jp,iso-2022-jp,sjis,utf-8
 
 "インデント関連
 set autoindent
@@ -348,7 +348,9 @@ NeoBundle 'vim-scripts/jQuery'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'teramako/jscomplete-vim'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'vim-scripts/YankRing.vim'
+" NeoBundle 'vim-scripts/YankRing.vim'  " 副作用が多いので辞める
+NeoBundle 'LeafCage/yankround.vim'      " YankRingのかわり
+NeoBundle 'kien/ctrlp.vim'              " YankRingのかわり
 NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'vim-scripts/closetag.vim'
 NeoBundle 'vim-scripts/gtags.vim'
@@ -367,6 +369,7 @@ NeoBundle 'gregsexton/gitv'             " コミットログを見やすく
 NeoBundle 'Lokaltog/vim-easymotion'     " 簡単にカーソル移動
 NeoBundle 'sjl/gundo.vim'               " Undo履歴Visualize
 NeoBundle 'tpope/vim-fugitive'          " git用
+NeoBundle 'osyo-manga/vim-over'         " カッコイイ置換
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -643,6 +646,20 @@ hi EasyMotionTarget ctermbg=none ctermfg=red
 hi EasyMotionShade  ctermbg=none ctermfg=blue
 " }}}
 
+" {{{ yankround.vim
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+"" 履歴取得数
+let g:yankround_max_history = 50
+" }}}
+
+" {{{ ctrlp.vim
+nnoremap s <Nop>
+let g:ctrlp_map = '<Nop>'
+nnoremap sp :<C-u>CtrlP<Space>
+" }}}
 " }}}
 
 " {{{ MacVim
