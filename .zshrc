@@ -51,3 +51,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 source $HOME/.dotfiles/.zshrc.mine
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
