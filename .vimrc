@@ -681,3 +681,6 @@ filetype plugin indent on
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
+if filereadable(expand('~/.vimrc.encoding'))
+    source ~/.vimrc.encoding
+endif
