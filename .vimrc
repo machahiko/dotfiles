@@ -43,7 +43,7 @@ set foldmethod=marker           " {{{ }}}で折りたたみを可能に
 " エンコーディング
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=euc-jp,iso-2022-jp,sjis,utf-8
+" set fileencodings=euc-jp,iso-2022-jp,sjis,utf-8
 
 "インデント関連
 set autoindent
