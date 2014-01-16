@@ -18,5 +18,3 @@ zstyle ':completion:*' list-colors 'di=35' 'ln=34' 'so=32' 'ex=31' 'bd=46;34' 'c
 #-------------------
 export PATH=$PATH:/opt/local/bin
 export PATH
-
-eval "$(rbenv init -)"
