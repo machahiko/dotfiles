@@ -325,11 +325,10 @@ endfunction
 "----------------------------------------
 " Plugin
 "----------------------------------------
-set rtp+=~/.dotfiles/neobundle.vim
 if has('vim_starting')
-  set runtimepath+=~/dotfiles/neobundle.vim
-  call neobundle#rc(expand('~/.vim/'))
+  set runtimepath+=~/.dotfiles/neobundle.vim/
 endif
+call neobundle#rc(expand('~/.vim/'))
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -372,6 +371,7 @@ NeoBundle 'joonty/vdebug'
 " NeoBundle 'vim-scripts/DBGp-client'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
+NeoBundle 'AtsushiM/search-parent.vim'
 NeoBundle 'AtsushiM/sass-compile.vim'
 NeoBundle 'vim-scripts/yanktmp'         " 複数セッションでコピー履歴共有
 NeoBundle 'gregsexton/gitv'             " コミットログを見やすく
