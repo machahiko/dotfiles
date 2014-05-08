@@ -58,3 +58,4 @@ cask install tree
 cask install vim
 cask install xz
 cask install the_silver_searcher
+cask install tig
