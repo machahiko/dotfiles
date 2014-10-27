@@ -350,7 +350,8 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'tpope/vim-pathogen'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'mattn/zencoding-vim'
+"NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 " NeoBundle 'jiangmiao/simple-javascript-indenter'
 NeoBundle 'vim-scripts/jQuery'
@@ -366,8 +367,9 @@ NeoBundle 'vim-scripts/gtags.vim'
 " NeoBundle 'vim-scripts/JavaScript-Indent'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'taichouchou2/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+" NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 " NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'joonty/vdebug'
 " NeoBundle 'vim-scripts/DBGp-client'
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -380,6 +382,7 @@ NeoBundle 'Lokaltog/vim-easymotion'     " 簡単にカーソル移動
 NeoBundle 'sjl/gundo.vim'               " Undo履歴Visualize
 NeoBundle 'tpope/vim-fugitive'          " git用
 NeoBundle 'osyo-manga/vim-over'         " カッコイイ置換
+NeoBundle "osyo-manga/vim-anzu"         " 検索結果に件数表示
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -594,6 +597,28 @@ nmap <F9> :TagbarToggle<CR>
 
 " {{{ powerline
 let g:Powerline_symbols = 'fancy'
+" }}}
+
+" {{{ airline
+" vim-anzuの表示を statuslineに
+let g:airline_section_c = '%F %{anzu#search_status()}'
+" whitespace無効
+let g:airline#extensions#whitespace#enabled = 0
+"}}}
+
+" {{{ vim-anzu関連
+"
+" キーマップ設定
+" nmap n <Plug>(anzu-n)
+" nmap N <Plug>(anzu-N)
+nmap n nzz<Plug>(anzu-update-search-status)
+nmap N Nzz<Plug>(anzu-update-search-status)
+nmap * <Plug>(anzu-star)
+nmap # <Plug>(anzu-sharp)
+" ESC2回押しで検索ハイライトを消去
+nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
+" format = (該当数/全体数)
+let g:anzu_status_format = "(%i/%l)"
 " }}}
 
 " {{{ debug
