@@ -376,13 +376,14 @@ NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'AtsushiM/search-parent.vim'
 NeoBundle 'AtsushiM/sass-compile.vim'
-NeoBundle 'vim-scripts/yanktmp'         " 複数セッションでコピー履歴共有
 NeoBundle 'gregsexton/gitv'             " コミットログを見やすく
 NeoBundle 'Lokaltog/vim-easymotion'     " 簡単にカーソル移動
 NeoBundle 'sjl/gundo.vim'               " Undo履歴Visualize
 NeoBundle 'tpope/vim-fugitive'          " git用
 NeoBundle 'osyo-manga/vim-over'         " カッコイイ置換
 NeoBundle "osyo-manga/vim-anzu"         " 検索結果に件数表示
+" NeoBundle 'Yggdroot/indentLine'         " インデントを見やすくする
+NeoBundle 'nathanaelkane/vim-indent-guides' " IndentLineがなんか使えないので代替手段
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -660,9 +661,9 @@ au! BufWritePost * SassCompile
 " }}}
 
 " {{{ yanktmp
-map <silent> sy :call YanktmpYank()<CR>
-map <silent> sp :call YanktmpPaste_p()<CR>
-map <silent> sP :call YanktmpPaste_P()<CR>
+" map <silent> sy :call YanktmpYank()<CR>
+" map <silent> sp :call YanktmpPaste_p()<CR>
+" map <silent> sP :call YanktmpPaste_P()<CR>
 " }}}
 
 " {{{ gundo
@@ -695,6 +696,24 @@ nnoremap s <Nop>
 let g:ctrlp_map = '<Nop>'
 nnoremap sp :<C-u>CtrlP<Space>
 " }}}
+
+" {{{ indentLine
+" let g:indentLine_faster = 1
+" nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+" let g:indentLine_color_term = 111
+" let g:indentLine_color_gui = '#708090'
+" let g:indentLine_char = '|' "use ¦, ┆ or │
+" }}}
+
+" {{{ vim-indent-guides
+" <LEADER>ig でトグル
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=10
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=12
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+" }}}
+
 " }}}
 
 " {{{ MacVim
