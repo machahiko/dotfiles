@@ -49,8 +49,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-source $HOME/.dotfiles/.zshrc.mine
+[ -f ~/.dotfiles/zshrc.mine ] && source $HOME/.dotfiles/.zshrc.mine
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# load peco setting
+[ -f ~/.zshrc.peco ] && source ~/.zshrc.peco
