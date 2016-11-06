@@ -63,9 +63,9 @@ endif
 
 
 "マウスを有効にする
-if has('mouse')
-  set mouse=a
-endif
+" if has('mouse')
+"   set mouse=a
+" endif
 
 "----------------------------------------
 " Search
