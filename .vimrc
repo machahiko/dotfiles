@@ -350,7 +350,8 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'tpope/vim-pathogen'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'mattn/zencoding-vim'
+"NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 " NeoBundle 'jiangmiao/simple-javascript-indenter'
 NeoBundle 'vim-scripts/jQuery'
@@ -366,20 +367,23 @@ NeoBundle 'vim-scripts/gtags.vim'
 " NeoBundle 'vim-scripts/JavaScript-Indent'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'taichouchou2/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+" NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 " NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'joonty/vdebug'
 " NeoBundle 'vim-scripts/DBGp-client'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'AtsushiM/search-parent.vim'
 NeoBundle 'AtsushiM/sass-compile.vim'
-NeoBundle 'vim-scripts/yanktmp'         " 複数セッションでコピー履歴共有
 NeoBundle 'gregsexton/gitv'             " コミットログを見やすく
 NeoBundle 'Lokaltog/vim-easymotion'     " 簡単にカーソル移動
 NeoBundle 'sjl/gundo.vim'               " Undo履歴Visualize
 NeoBundle 'tpope/vim-fugitive'          " git用
 NeoBundle 'osyo-manga/vim-over'         " カッコイイ置換
+NeoBundle "osyo-manga/vim-anzu"         " 検索結果に件数表示
+" NeoBundle 'Yggdroot/indentLine'         " インデントを見やすくする
+NeoBundle 'nathanaelkane/vim-indent-guides' " IndentLineがなんか使えないので代替手段
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -596,6 +600,28 @@ nmap <F9> :TagbarToggle<CR>
 let g:Powerline_symbols = 'fancy'
 " }}}
 
+" {{{ airline
+" vim-anzuの表示を statuslineに
+let g:airline_section_c = '%F %{anzu#search_status()}'
+" whitespace無効
+let g:airline#extensions#whitespace#enabled = 0
+"}}}
+
+" {{{ vim-anzu関連
+"
+" キーマップ設定
+" nmap n <Plug>(anzu-n)
+" nmap N <Plug>(anzu-N)
+nmap n nzz<Plug>(anzu-update-search-status)
+nmap N Nzz<Plug>(anzu-update-search-status)
+nmap * <Plug>(anzu-star)
+nmap # <Plug>(anzu-sharp)
+" ESC2回押しで検索ハイライトを消去
+nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
+" format = (該当数/全体数)
+let g:anzu_status_format = "(%i/%l)"
+" }}}
+
 " {{{ debug
 "-----------------------------
 " debug
@@ -635,9 +661,9 @@ au! BufWritePost * SassCompile
 " }}}
 
 " {{{ yanktmp
-map <silent> sy :call YanktmpYank()<CR>
-map <silent> sp :call YanktmpPaste_p()<CR>
-map <silent> sP :call YanktmpPaste_P()<CR>
+" map <silent> sy :call YanktmpYank()<CR>
+" map <silent> sp :call YanktmpPaste_p()<CR>
+" map <silent> sP :call YanktmpPaste_P()<CR>
 " }}}
 
 " {{{ gundo
@@ -670,6 +696,24 @@ nnoremap s <Nop>
 let g:ctrlp_map = '<Nop>'
 nnoremap sp :<C-u>CtrlP<Space>
 " }}}
+
+" {{{ indentLine
+" let g:indentLine_faster = 1
+" nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+" let g:indentLine_color_term = 111
+" let g:indentLine_color_gui = '#708090'
+" let g:indentLine_char = '|' "use ¦, ┆ or │
+" }}}
+
+" {{{ vim-indent-guides
+" <LEADER>ig でトグル
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=10
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=12
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+" }}}
+
 " }}}
 
 " {{{ MacVim

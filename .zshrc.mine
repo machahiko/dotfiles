@@ -65,6 +65,7 @@ bindkey "^N" history-beginning-search-forward-end
 #--------------
 # Search
 #--------------
+alias ag='ag -S --stats'
 # grepfind: to grep through files found by find, e.g. grepf pattern '*.c'
 # note that 'grep -r pattern dir_name' is an alternative if want all files
 #grepfind () { find . -type f name "$2" -print0 | xargs -0 grep "$1" ; }
