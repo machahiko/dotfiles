@@ -373,7 +373,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'joonty/vdebug'
 " NeoBundle 'vim-scripts/DBGp-client'
 NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'taichouchou2/html5.vim'
+" NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'AtsushiM/search-parent.vim'
 NeoBundle 'AtsushiM/sass-compile.vim'
 NeoBundle 'gregsexton/gitv'             " コミットログを見やすく
@@ -384,6 +384,7 @@ NeoBundle 'osyo-manga/vim-over'         " カッコイイ置換
 NeoBundle "osyo-manga/vim-anzu"         " 検索結果に件数表示
 " NeoBundle 'Yggdroot/indentLine'         " インデントを見やすくする
 NeoBundle 'nathanaelkane/vim-indent-guides' " IndentLineがなんか使えないので代替手段
+NeoBundle 'yuttie/comfortable-motion.vim' " スクロールが見やすくなる
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -457,11 +458,13 @@ endfunction"}}}
 " ファイル上でvを押すと別ウィンドウを縦分割して開く
 "-----------------------
 nnoremap <F1> :<C-u>VimFilerBufferDir -split -simple -toggle -winwidth=35 -no-quit<CR>
-autocmd! FileType vimfiler call g:my_vimfiler_settings()
-function! g:my_vimfiler_settings()
+autocmd! FileType vimfiler call My_vimfiler_settings()
+function! My_vimfiler_settings()
   nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-  nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<Cr>
-  nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
+  nnoremap <silent><buffer><expr> <C-j> vimfiler#do_switch_action('split')
+  inoremap <silent><buffer><expr> <C-j> vimfiler#do_switch_action('split')
+  nnoremap <silent><buffer><expr> <C-l> vimfiler#do_switch_action('vsplit')
+  inoremap <silent><buffer><expr> <C-l> vimfiler#do_switch_action('vsplit')
 endfunction
 
 let s:my_action = { 'is_selectable' : 1 }
@@ -712,6 +715,10 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=10
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=12
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
+" }}}
+
+" {{{ comfortable-motion.vim
+let g:comfortable_motion_friction = 500.0
 " }}}
 
 " }}}
