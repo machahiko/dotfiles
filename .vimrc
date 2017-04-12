@@ -384,7 +384,8 @@ NeoBundle 'osyo-manga/vim-over'         " カッコイイ置換
 NeoBundle "osyo-manga/vim-anzu"         " 検索結果に件数表示
 " NeoBundle 'Yggdroot/indentLine'         " インデントを見やすくする
 NeoBundle 'nathanaelkane/vim-indent-guides' " IndentLineがなんか使えないので代替手段
-NeoBundle 'yuttie/comfortable-motion.vim' " スクロールが見やすくなる
+NeoBundle 'Shougo/context_filetype.vim' " vueのsyntaxのため
+NeoBundle 'osyo-manga/vim-precious' " vueのsyntaxのため
 call pathogen#infect()
 
 filetype plugin indent on     " required!
@@ -695,9 +696,8 @@ let g:yankround_max_history = 50
 " }}}
 
 " {{{ ctrlp.vim
-nnoremap s <Nop>
-let g:ctrlp_map = '<Nop>'
-nnoremap sp :<C-u>CtrlP<Space>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 " }}}
 
 " {{{ indentLine
@@ -717,10 +717,11 @@ let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 " }}}
 
-" {{{ comfortable-motion.vim
-let g:comfortable_motion_friction = 500.0
-" }}}
 
+
+" {{{ vue
+autocmd BufNewFile,BufRead *.vue set filetype=html
+" }}}
 " }}}
 
 " {{{ MacVim
