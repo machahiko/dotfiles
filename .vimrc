@@ -370,7 +370,7 @@ NeoBundle 'taichouchou2/alpaca_powertabline'
 " NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 " NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'joonty/vdebug'
+" NeoBundle 'joonty/vdebug'
 " NeoBundle 'vim-scripts/DBGp-client'
 NeoBundle 'hail2u/vim-css3-syntax'
 " NeoBundle 'taichouchou2/html5.vim'
